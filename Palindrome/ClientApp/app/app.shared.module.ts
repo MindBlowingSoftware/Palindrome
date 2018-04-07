@@ -7,16 +7,17 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
+import { PalindromeComponent } from './components/palindrome/palindrome.component';
+import { CheckPalindromeComponent } from './components/checkPalindrome/checkPalindrome.component';
+import { CheckPalindromeService } from './components/checkPalindrome/checkPalindrome.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
-        HomeComponent
+        HomeComponent,
+        PalindromeComponent,
+        CheckPalindromeComponent
     ],
     imports: [
         CommonModule,
@@ -25,11 +26,12 @@ import { CounterComponent } from './components/counter/counter.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'check', component: CheckPalindromeComponent },
+            { path: 'palindromes', component: PalindromeComponent },
             { path: '**', redirectTo: 'home' }
         ])
-    ]
+    ],
+    providers: [CheckPalindromeService]
 })
 export class AppModuleShared {
 }

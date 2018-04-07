@@ -1,0 +1,24 @@
+<h1>Palindromes</h1>
+
+<p>This component fetches palindromes from the database.</p>
+
+<p *ngIf="!palindromes"><em>Loading...</em></p>
+
+<table class='table' *ngIf="palindromes">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Palindrome</th>
+            <th>Created On</th>
+            <th>Updated On</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let palindrome of palindromes">
+            <td>{{ palindrome.palindromeId }}</td>
+            <td>{{ palindrome.palindromeValue }}</td>
+            <td>{{ palindrome.createTS | date:'shortDate' }}</td>
+            <td>{{ palindrome.updatedTS | date:'shortDate' }}</td>
+        </tr>
+    </tbody>
+</table>

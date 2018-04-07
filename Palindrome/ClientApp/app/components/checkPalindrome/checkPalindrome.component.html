@@ -1,0 +1,29 @@
+<div class=" container">
+    <h1>Check Palindrome</h1>
+    <p>This component checks if an input string is a pallindrome .</p>
+    
+    <form #form="ngForm" (submit)="SubmitForm(form)" novalidate>
+        <div class="form-group" [class.has-error]="palindrome">
+            <label class="control-label"></label>
+            <input #palindrome type="text" placeholder="palindrome" name="palindrome" required [(ngModel)]="model.palindrome" class="input-lg" />
+            <div *ngIf="palindrome.invalid && palindrome.touched">Input is required</div>
+        </div>
+        <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-default active">Check</button>
+        </div>
+
+        <div class="form-group">
+            <div class="alert alert-success bg-success" *ngIf="model.isPalindrome == true">
+                YES
+            </div>
+            <div class="alert alert-danger" *ngIf="!model.isPalindrome">
+                NO
+            </div>
+            
+        </div>
+
+    </form>
+    
+    
+</div>
+
