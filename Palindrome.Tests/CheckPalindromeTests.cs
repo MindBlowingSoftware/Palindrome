@@ -54,7 +54,7 @@ namespace Palindrome.Tests
         }
 
         [TestMethod]
-        public void Special_Characters_Pallindrome_Should_Be_Recognised()
+        public void Numeric_Characters_Pallindrome_Should_Be_Recognised()
         {
             //Arrange
             var viewmodel = new PalindromeViewModel()
@@ -68,7 +68,7 @@ namespace Palindrome.Tests
 
             // Assert
 
-            Assert.IsTrue(isPalindrome);
+            Assert.IsFalse(isPalindrome);
         }
 
 
@@ -79,6 +79,24 @@ namespace Palindrome.Tests
             var viewmodel = new PalindromeViewModel()
             {
                 PalindromeValue = "<wasitacatisaw></wasitacatisaw>"
+            };
+
+            // Act
+
+            var isPalindrome = businessRepo.IsPalindrome(viewmodel);
+
+            // Assert
+
+            Assert.IsTrue(isPalindrome);
+        }
+
+        [TestMethod]
+        public void Symmetric_Numeric_Input_should_Pass()
+        {
+            //Arrange
+            var viewmodel = new PalindromeViewModel()
+            {
+                PalindromeValue = "0wasitacatisaw0"
             };
 
             // Act

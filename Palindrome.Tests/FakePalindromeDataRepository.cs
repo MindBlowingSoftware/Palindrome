@@ -9,7 +9,7 @@ namespace Palindrome
     public class FakePalindromeDataRepository : IPalindromeDataRepository
     {
 
-        List<Palindrome> samplePalindromes = new List<Palindrome>()
+        public List<Palindrome> samplePalindromes = new List<Palindrome>()
             {
                 new Palindrome
                 {

@@ -49,7 +49,7 @@ namespace Palindrome
             var input = model.PalindromeValue;
             var arr = input.ToCharArray();
 
-            arr = Array.FindAll(arr, (c => (char.IsLetter(c))));
+            arr = Array.FindAll(arr, (c => (char.IsLetterOrDigit(c))));
 
             var cleanedInput = new string(arr);
 

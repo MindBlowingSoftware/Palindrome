@@ -21,15 +21,10 @@ namespace Palindrome
 
         public void Create(Palindrome entity)
         {
-            try
-            {
-                _context.Palindromes.Add(entity);
-                _context.SaveChanges();
-            }
-            catch(Exception ex)
-            {
-
-            }            
+            
+            _context.Palindromes.Add(entity);
+            _context.SaveChanges();
+                        
         }
     }
 }
