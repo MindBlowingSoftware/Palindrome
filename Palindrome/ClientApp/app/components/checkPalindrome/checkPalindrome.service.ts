@@ -15,7 +15,7 @@ export class CheckPalindromeService {
         console.log("pallindrome " + model.palindromeValue);
         console.log("checking with CheckPalindrome Service");
 
-        let url = "/api/CheckPalindrome"
+        let url = "/api/CheckPalindrome";
         let body = JSON.stringify(model);
         let headers = new Headers({ "Content-Type": "application/json" });
         let options = new RequestOptions({ headers: headers });
