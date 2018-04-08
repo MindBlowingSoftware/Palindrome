@@ -5,7 +5,7 @@
     <form #form="ngForm" (submit)="SubmitForm(form)" novalidate>
         <div class="form-group" [class.has-error]="palindrome">
             <label class="control-label"></label>
-            <input #palindrome type="text" placeholder="palindrome" name="palindrome" required [(ngModel)]="model.palindrome" class="input-lg" />
+            <input #palindrome type="text" placeholder="palindrome" name="palindrome" required [(ngModel)]="model.palindromeValue" class="input-lg" />
             <div *ngIf="palindrome.invalid && palindrome.touched">Input is required</div>
         </div>
         <div class="form-group">
@@ -13,17 +13,18 @@
         </div>
 
         <div class="form-group">
-            <div class="alert alert-success bg-success" *ngIf="model.isPalindrome == true">
+            <div class="alert alert-success bg-success" *ngIf="model.isPalindrome">
                 YES
             </div>
             <div class="alert alert-danger" *ngIf="!model.isPalindrome">
                 NO
             </div>
-            
+
         </div>
 
+        <div class="form-group">
+            {{model.saveStatus}}
+        </div>
     </form>
-    
-    
 </div>
 

@@ -1,21 +1,32 @@
 import { Component, Inject, Injectable } from '@angular/core';
 import { Http, HttpModule, Response, Headers, RequestOptions } from '@angular/http';
-import { CheckPalindromeModel } from './checkPalindrome.model';
+import { Palindrome } from './palindrome.model';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
-export class CheckPalindromeService {
+export class PalindromeService {
     constructor(private http: Http) {
 
     }
 
-    checkPalindromeInput(model: CheckPalindromeModel) : Observable<any> {
-        console.log("pallindrome " + model.palindromeValue);
-        console.log("checking with CheckPalindrome Service");
+    getPalindromes(): Observable<any> {
+        
+        console.log("fetching to Palindromes from Palindrome API");
 
-        let url = "/api/CheckPalindrome"
+        let url = "/api/Palindrome"
+
+        return this.http.get(url)
+            .map(this.ExtractData)
+            .catch(this.handleError);
+    }
+
+    postPalindromeInput(model: Palindrome): Observable<any> {
+        console.log(model);
+        console.log("posting to Palindrome Service");
+
+        let url = "/api/Palindrome"
         let body = JSON.stringify(model);
         let headers = new Headers({ "Content-Type": "application/json" });
         let options = new RequestOptions({ headers: headers });

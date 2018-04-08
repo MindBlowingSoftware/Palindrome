@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,30 +6,10 @@ using System.Threading.Tasks;
 
 namespace Palindrome
 {
-
-    public class PalindromeContext : DbContext
+    public class FakePalindromeDataRepository : IPalindromeDataRepository
     {
-        public PalindromeContext(DbContextOptions options) : base(options)
-        {
 
-        }
-
-        public DbSet<Palindrome> Palindromes { get; set; }
-
-    }
-
-    public static class DbInitializer
-    {
-        public static void Initialize(PalindromeContext context)
-        {
-            context.Database.EnsureCreated();
-
-            if (context.Palindromes.Any())
-            {
-                return;
-            }
-
-            var samplePalindromes = new List<Palindrome>()
+        List<Palindrome> samplePalindromes = new List<Palindrome>()
             {
                 new Palindrome
                 {
@@ -55,8 +35,19 @@ namespace Palindrome
                 }
             };
 
-            context.Palindromes.AddRange(samplePalindromes);
-            context.SaveChanges();
+        public FakePalindromeDataRepository()
+        {
+            
+        }
+        public IQueryable<Palindrome> GetAll()
+        {
+            return samplePalindromes.AsQueryable();
+        }
+
+        public void Create(Palindrome entity)
+        {
+            
+            samplePalindromes.Add(entity);
         }
     }
 }

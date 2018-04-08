@@ -9,47 +9,32 @@ namespace Palindrome.Controllers
     [Route("api/[controller]")]
     public class PalindromeController : Controller
     {
-        private readonly PalindromeContext _context;
-        public PalindromeController(PalindromeContext context)
+        private readonly IPalindromeBusinessRepository _repo;
+
+        public PalindromeController(IPalindromeBusinessRepository context)
         {
-            _context = context;
+            _repo = context;
         }
         // GET api/values
         [HttpGet]
-        public IEnumerable<Palindrome> Get()
+        public List<PalindromeViewModel> Get()
         {
-            return _context.Palindromes;
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public Palindrome Get(Guid id)
-        {
-            return _context.Palindromes.SingleOrDefault(a => a.PalindromeId == id);
+            return _repo.FetchExistingRecords();
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]Palindrome palindrome)
-        {
-            _context.Palindromes.Add(palindrome);
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody]Palindrome palindrome)
-        {
-            palindrome.UpdatedTS = DateTime.Now;
-            _context.Palindromes.Update(palindrome);
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(Guid id)
-        {
-            var palindrome = Get(id);
-            palindrome.InactivatedTS = DateTime.Now;
-            _context.Palindromes.Update(palindrome);
+        public JsonResult Post([FromBody]PalindromeViewModel input)
+        {   
+            try
+            {
+                _repo.CreateNew(input);
+                return new JsonResult("Saved");
+            }
+            catch(Exception ex)
+            {
+                return new JsonResult("An error Occurred" + ex.Message);
+            }
         }
     }
 }

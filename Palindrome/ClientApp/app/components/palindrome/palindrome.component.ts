@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
+import { Palindrome } from './palindrome.model';
+import { PalindromeService } from './palindrome.service';
 
 @Component({
     selector: 'palindromes',
@@ -8,17 +10,23 @@ import { Http } from '@angular/http';
 export class PalindromeComponent {
     public palindromes: Palindrome[];
 
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
-        http.get(baseUrl + 'api/Palindrome').subscribe(result => {
-            this.palindromes = result.json() as Palindrome[];
-            console.log(this.palindromes);
-        }, error => console.error(error));
+    constructor(public palindromeService: PalindromeService) {
+        this.GetPalindromes();
+    }
+
+    GetPalindromes() {
+
+
+        this.palindromeService.getPalindromes()
+            .subscribe(
+            data => {
+                console.log(data);
+                this.palindromes = data as Palindrome[];
+            },
+            error => {
+                console.log(error);
+            });
     }
 }
 
-interface Palindrome {
-    PalindromeId: string;
-    PalindromeValue: string;
-    CreateTS: Date;
-    UpdatedTS: Date;
-}
+

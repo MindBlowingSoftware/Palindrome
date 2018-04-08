@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PalindromeComponent } from './components/palindrome/palindrome.component';
 import { CheckPalindromeComponent } from './components/checkPalindrome/checkPalindrome.component';
 import { CheckPalindromeService } from './components/checkPalindrome/checkPalindrome.service';
+import { PalindromeService } from './components/palindrome/palindrome.service';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,7 @@ import { CheckPalindromeService } from './components/checkPalindrome/checkPalind
             { path: '**', redirectTo: 'home' }
         ])
     ],
-    providers: [CheckPalindromeService]
+    providers: [CheckPalindromeService, PalindromeService]
 })
 export class AppModuleShared {
 }

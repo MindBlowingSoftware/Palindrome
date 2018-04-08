@@ -10,52 +10,17 @@ namespace Palindrome.Controllers
     [Route("api/[controller]")]
     public class CheckPalindromeController : Controller
     {
-        
-        public CheckPalindromeController(PalindromeContext context)
+        IPalindromeBusinessRepository _businessRepo;
+        public CheckPalindromeController(IPalindromeBusinessRepository businessRepo)
         {
-           
+            _businessRepo = businessRepo;
         }
-       
+
         // POST api/values
         [HttpPost]
         public bool Post([FromBody]PalindromeViewModel model)
         {
-            var input = model.Palindrome;
-            var arr = input.ToCharArray();
-
-            arr = Array.FindAll(arr, (c => (char.IsLetter(c))));
-
-            var cleanedInput = new string(arr);
-
-            if(IsPalindrome(cleanedInput))
-            {
-                try
-                {
-                    SaveToDb(input);
-                }
-
-                catch
-                {
-                    return true;
-                }
-                return true;
-            }
-
-            return false;
-        }
-
-        private void SaveToDb(string input)
-        {
-            RedirectToAction("Create", "Palindrome", new Palindrome
-            {
-               PalindromeValue = input
-            });
-        }
-
-        private bool IsPalindrome(string cleanedInput)
-        {
-            var reversedCleanedInput = new string(cleanedInput.ToCharArray().Reverse().ToArray());
-            return reversedCleanedInput.ToLower() == cleanedInput.ToLower();
-        }
+            return _businessRepo.IsPalindrome(model);
+        }        
     }
 }

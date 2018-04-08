@@ -26,6 +26,9 @@ namespace Palindrome
             services.AddMvc();
             services.AddDbContext<PalindromeContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
+            services.AddTransient<IPalindromeDataRepository,PalindromeDataRepository>();
+            services.AddTransient<IPalindromeBusinessRepository,PalindromeBusinessRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
