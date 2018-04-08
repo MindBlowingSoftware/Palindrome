@@ -1,6 +1,6 @@
 export class CheckPalindromeModel{
     constructor(public palindromeValue: string,
-        public isPalindrome: boolean,
+        public isPalindrome: string,
         public saveStatus: string) {
 
     }

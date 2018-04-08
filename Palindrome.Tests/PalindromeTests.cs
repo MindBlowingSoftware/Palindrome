@@ -47,7 +47,20 @@ namespace Palindrome.Tests
             Assert.AreEqual(count, expectedCount);
         }
 
+        [TestMethod]
+        public void Should_Not_Save_the_Same_Palindrome()
+        {
+            // Arrange
 
+            var uniquePallindrome = "Was it a cat I saw";
+
+            //Act
+            businessRepo.CreateNew(new PalindromeViewModel { PalindromeValue = uniquePallindrome });
+
+            //Assert
+            Assert.IsTrue(businessRepo.FetchExistingRecords()
+                .Count(a => a.PalindromeValue == uniquePallindrome) == 1);
+        }
 
     }
 }

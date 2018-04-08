@@ -49,5 +49,10 @@ namespace Palindrome
             
             samplePalindromes.Add(entity);
         }
+
+        public Palindrome GetBypalindrome(string palindrome)
+        {
+            return samplePalindromes.SingleOrDefault(a => a.PalindromeValue == palindrome);
+        }
     }
 }

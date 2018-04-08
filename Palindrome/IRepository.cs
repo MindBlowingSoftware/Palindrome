@@ -6,5 +6,6 @@ namespace Palindrome
     {
         IQueryable<T> GetAll();
         void Create(T entity);
+        Palindrome GetBypalindrome(string paalindrome);
     }
 }

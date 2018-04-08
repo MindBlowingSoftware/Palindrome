@@ -26,5 +26,10 @@ namespace Palindrome
             _context.SaveChanges();
                         
         }
+
+        public Palindrome GetBypalindrome(string palindrome)
+        {
+            return _context.Palindromes.SingleOrDefault(a => a.PalindromeValue == palindrome);
+        }
     }
 }

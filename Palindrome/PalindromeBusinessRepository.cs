@@ -18,14 +18,17 @@ namespace Palindrome
 
         public void CreateNew(PalindromeViewModel viewmodel)
         {
-            var palindrome = new Palindrome()
+            if(FetchExistingRecordByPalindrome(viewmodel.PalindromeValue) == null)
             {
-                PalindromeValue = viewmodel.PalindromeValue,
-                CreateTS = DateTime.Now,
-                PalindromeId = Guid.NewGuid()
-            };
+                var palindrome = new Palindrome()
+                {
+                    PalindromeValue = viewmodel.PalindromeValue,
+                    CreateTS = DateTime.Now,
+                    PalindromeId = Guid.NewGuid()
+                };
 
-            _datacontext.Create(palindrome);
+                _datacontext.Create(palindrome);
+            }
         }
 
         public List<PalindromeViewModel> FetchExistingRecords()
@@ -39,6 +42,25 @@ namespace Palindrome
                 PalindromeValue = a.PalindromeValue,
                 UpdatedTS = a.UpdatedTS
             }).ToList();
+        }
+
+        private PalindromeViewModel FetchExistingRecordByPalindrome(string palindrome)
+        {
+            var palindromefromDb = _datacontext.GetBypalindrome(palindrome);
+            if(palindromefromDb != null)
+            {
+                return new PalindromeViewModel
+                {
+                    CreateTS = palindromefromDb.CreateTS,
+                    InactivatedTS = palindromefromDb.InactivatedTS,
+                    PalindromeId = palindromefromDb.PalindromeId,
+                    PalindromeValue = palindromefromDb.PalindromeValue,
+                    UpdatedTS = palindromefromDb.UpdatedTS
+                };
+            }
+
+            return null;
+            
         }
 
         public bool IsPalindrome(PalindromeViewModel model)

@@ -11,8 +11,8 @@ import { Palindrome } from '../palindrome/palindrome.model';
     templateUrl: './checkPalindrome.component.html'
 })
 export class CheckPalindromeComponent {
-    public isPalindrome: boolean;
-    model = new CheckPalindromeModel("",false,"");
+    public isPalindrome: string;
+    model = new CheckPalindromeModel("","","");
     constructor(private checkPalindromeService: CheckPalindromeService,
     private palindromeSevice: PalindromeService) {
         
@@ -27,7 +27,7 @@ export class CheckPalindromeComponent {
                 console.log("post success");
                 console.log(data);
                 if (data) {
-                    this.model.isPalindrome = true;
+                    this.model.isPalindrome = "true";
                     this.model.saveStatus = "Saving to database...";
 
                     let palindrome = new Palindrome(this.model.palindromeValue);
@@ -42,7 +42,7 @@ export class CheckPalindromeComponent {
                         }
                         );
                 }
-                else { this.model.isPalindrome = false; }
+                else { this.model.isPalindrome = "false"; }
             },
             error => {
                 console.log("error");
