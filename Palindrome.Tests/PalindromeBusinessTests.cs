@@ -1,16 +1,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Palindrome.Controllers;
 using System.Linq;
+using Palindrome.Business;
+using Palindrome.Models;
 
 namespace Palindrome.Tests
 {
     [TestClass]
-    public class PalindromeTests
+    public class PalindromeBusinessTests
     {
         private FakePalindromeDataRepository dataRepo;
         private PalindromeBusinessRepository businessRepo;
 
-        public PalindromeTests()
+        public PalindromeBusinessTests()
         {
             dataRepo = new FakePalindromeDataRepository();
             businessRepo = new PalindromeBusinessRepository(dataRepo);

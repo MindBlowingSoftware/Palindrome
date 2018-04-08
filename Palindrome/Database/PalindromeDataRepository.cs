@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading.Tasks;
+using Palindrome.Models;
 
-namespace Palindrome
+namespace Palindrome.Database
 {
+    [ExcludeFromCodeCoverage]
     public class PalindromeDataRepository : IPalindromeDataRepository
     {
         private readonly PalindromeContext _context;
@@ -14,12 +13,12 @@ namespace Palindrome
         {
             _context = context;
         }
-        public IQueryable<Palindrome> GetAll()
+        public IQueryable<Models.Palindrome> GetAll()
         {
             return _context.Palindromes.AsQueryable();
         }
 
-        public void Create(Palindrome entity)
+        public void Create(Models.Palindrome entity)
         {
             
             _context.Palindromes.Add(entity);
@@ -27,7 +26,7 @@ namespace Palindrome
                         
         }
 
-        public Palindrome GetBypalindrome(string palindrome)
+        public Models.Palindrome GetBypalindrome(string palindrome)
         {
             return _context.Palindromes.SingleOrDefault(a => a.PalindromeValue == palindrome);
         }

@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Palindrome.Controllers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Palindrome.Database;
+using Palindrome.Models;
 
-namespace Palindrome
+namespace Palindrome.Business
 {
     public class PalindromeBusinessRepository : IPalindromeBusinessRepository
     {
@@ -20,7 +19,7 @@ namespace Palindrome
         {
             if(FetchExistingRecordByPalindrome(viewmodel.PalindromeValue) == null)
             {
-                var palindrome = new Palindrome()
+                var palindrome = new Models.Palindrome()
                 {
                     PalindromeValue = viewmodel.PalindromeValue,
                     CreateTS = DateTime.Now,

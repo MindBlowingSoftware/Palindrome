@@ -1,6 +1,6 @@
-﻿using Palindrome.Controllers;
+﻿using Palindrome.Models;
 
-namespace Palindrome
+namespace Palindrome.Business
 {
     public interface IPalindromeBusinessRepository : IBusinessRepository<PalindromeViewModel>
     {

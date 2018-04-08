@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Palindrome.Controllers
+namespace Palindrome.Models
 {
     public interface IPalindrome
     {

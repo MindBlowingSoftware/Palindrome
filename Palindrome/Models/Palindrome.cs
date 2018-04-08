@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Palindrome.Controllers
+namespace Palindrome.Models
 {
-    public class PalindromeViewModel : IPalindrome
+    public class Palindrome : IPalindrome
     {
         public Guid PalindromeId { get; set; }
         public string PalindromeValue { get; set; }

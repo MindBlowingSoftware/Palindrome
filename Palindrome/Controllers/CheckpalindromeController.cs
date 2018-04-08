@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Palindrome.Business;
+using Palindrome.Models;
 
 namespace Palindrome.Controllers
 {

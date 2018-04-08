@@ -1,33 +1,32 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Palindrome.Database;
 
-namespace Palindrome
+namespace Palindrome.Tests
 {
     public class FakePalindromeDataRepository : IPalindromeDataRepository
     {
 
-        public List<Palindrome> samplePalindromes = new List<Palindrome>()
+        public List<Models.Palindrome> samplePalindromes = new List<Models.Palindrome>()
             {
-                new Palindrome
+                new Models.Palindrome
                 {
                     PalindromeValue = "Was it a cat I saw",
                     CreateTS = new DateTime(2018,04,06),
                     PalindromeId = Guid.NewGuid()
                 },
-                new Palindrome
+                new Models.Palindrome
                 {
                     PalindromeValue = "Don't nod",
                     CreateTS = new DateTime(2018,04,06),
                     PalindromeId = Guid.NewGuid()
-                },new Palindrome
+                },new Models.Palindrome
                 {
                     PalindromeValue = "Radar",
                     CreateTS = new DateTime(2018,04,06),
                     PalindromeId = Guid.NewGuid()
-                },new Palindrome
+                },new Models.Palindrome
                 {
                     PalindromeValue = "No Lemon",
                     CreateTS = new DateTime(2018,04,06),
@@ -39,20 +38,20 @@ namespace Palindrome
         {
             
         }
-        public IQueryable<Palindrome> GetAll()
+        public IQueryable<Models.Palindrome> GetAll()
         {
             return samplePalindromes.AsQueryable();
         }
 
-        public void Create(Palindrome entity)
+        public void Create(Models.Palindrome entity)
         {
             
             samplePalindromes.Add(entity);
         }
 
-        public Palindrome GetBypalindrome(string palindrome)
+        public Models.Palindrome GetBypalindrome(string palindrome)
         {
-            return samplePalindromes.SingleOrDefault(a => a.PalindromeValue == palindrome);
+            return samplePalindromes.FirstOrDefault(a => a.PalindromeValue.ToLower() == palindrome.ToLower());
         }
     }
 }

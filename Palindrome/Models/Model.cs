@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace Palindrome
+namespace Palindrome.Models
 {
 
+    [ExcludeFromCodeCoverage]
     public class PalindromeContext : DbContext
     {
         public PalindromeContext(DbContextOptions options) : base(options)
@@ -18,6 +19,7 @@ namespace Palindrome
 
     }
 
+    [ExcludeFromCodeCoverage]
     public static class DbInitializer
     {
         public static void Initialize(PalindromeContext context)

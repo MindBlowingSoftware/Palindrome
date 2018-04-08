@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Palindrome.Business;
 using Palindrome.Controllers;
+using Palindrome.Models;
 
 namespace Palindrome.Tests
 {
