@@ -28,7 +28,7 @@ namespace Palindrome.Database
 
         public Models.Palindrome GetBypalindrome(string palindrome)
         {
-            return _context.Palindromes.SingleOrDefault(a => a.PalindromeValue == palindrome);
+            return _context.Palindromes.SingleOrDefault(a => a.PalindromeValue.ToLower() == palindrome.ToLower());
         }
     }
 }
